@@ -1,0 +1,96 @@
+{
+    "name": "codestats",
+    "displayName": "CodeStats",
+    "description": "",
+    "version": "0.0.1",
+    "publisher": "GabrielChung",
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.sayHello"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "viewsContainers": {
+			"activitybar": [
+				{
+					"id": "myActivityBarItem",
+					"title": "Extension SayHello",
+					"icon": "icon.svg"
+				}
+			]
+		},
+        "commands": [
+            {
+                "command": "extension.sayHello",
+                "title": "Hello World"
+            }
+        ],
+        "views": {
+			"myActivityBarItem": [
+				{
+					"id": "viewHelloWorldItem",
+					"name": "Hello World"
+				}
+            ]
+        },
+        "menus": {
+			"commandPalette": [
+				{
+					"command": "ftpExplorer.revealResource"
+				}
+			],
+			"view/title": [
+				{
+					"command": "jsonOutline.refresh",
+					"when": "view == jsonOutline",
+					"group": "navigation"
+				},
+				{
+					"command": "nodeDependencies.refreshEntry",
+					"when": "view == nodeDependencies",
+					"group": "navigation"
+				},
+				{
+					"command": "extension.sayHello",
+					"when": "view == viewHelloWorldItem"
+				},
+				{
+					"command": "ftpExplorer.refresh",
+					"when": "view == ftpExplorer",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "nodeDependencies.deleteEntry",
+					"when": "view == nodeDependencies && viewItem == dependency"
+				},
+				{
+					"command": "jsonOutline.renameNode",
+					"when": "view == jsonOutline"
+				},
+				{
+					"command": "jsonOutline.refreshNode",
+					"when": "view == jsonOutline",
+					"group": "inline"
+				}
+			]
+		}
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.11.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
